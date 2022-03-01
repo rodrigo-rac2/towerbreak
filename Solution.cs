@@ -23,43 +23,9 @@ class Result
      *  1. INTEGER n
      *  2. INTEGER m
      */
-
     public static int towerBreakers(int n, int m)
     {
-        int currentPlayer = 1;
-        List<int> towers = new List<int>(n);
-        for(int i = 0; i < n; i++)
-            towers.Add(m);
-        while(isThereAnotherRound(towers)) {
-            currentPlayer = switchPlayer(currentPlayer);
-            playRound(towers);
-        }
-        return currentPlayer;
-    }
-    public static void playRound(List<int> towers) {
-        int max = towers.Max();
-        int index = towers.LastIndexOf(towers.Max());
-        for(int i = max - 1; i > 0; --i) {
-            if (max % i == 0) {
-                towers[index] = i;
-                break;
-            }
-        }
-    }
-    public static bool isThereAnotherRound(List<int> towers) {
-        int counter = 0;
-        for(int i = 0; i < towers.Count; i++) {
-            if (towers[i] > 1) {
-               counter++;
-            }
-            if (counter > 1) {
-                return true;
-            }
-        }
-        return counter > 1 ? true : false;
-    }
-    public static int switchPlayer(int currentPlayer) {
-        return currentPlayer == 1 ? 2 : 1;
+        return (m == 1) || (n % 2) == 0 ? 2 : 1;
     }
 }
 
